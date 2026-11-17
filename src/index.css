@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-parchment-50 text-slate-800 font-sans antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: 'Merriweather', Georgia, Cambria, serif;
+  }
+}
+
+/* Custom animated circular progress indicator */
+.progress-ring-circle {
+  transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+/* Spoiler blur filter and unblur animation */
+.spoiler-shield {
+  filter: blur(6px);
+  user-select: none;
+  transition: filter 0.3s ease, background-color 0.3s ease;
+}
+
+.spoiler-unblurred {
+  filter: blur(0px);
+  user-select: text;
+}
+
+/* Custom smooth scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1e9d7;
+}
+::-webkit-scrollbar-thumb {
+  background: #d6c09d;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c2a578;
+}
+
+/* Print styling for Exportable Reading Journal */
+@media print {
+  header, nav, footer, .no-print, button:not(.print-include) {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt;
+  }
+  .print-page {
+    page-break-after: always;
+    box-shadow: none !important;
+    border: none !important;
+  }
+}
