@@ -140,7 +140,7 @@ export const ApiService = {
 
   // Reset to default seed
   resetDemoData: async () => {
-    const res = await fetch(`${API_BASE}/demo/reset`, { method: 'POST' });
+    const res = await fetch(`${API_BASE}/reset`, { method: 'POST' });
     if (!res.ok) throw new Error('Failed to reset backend database');
     return await res.json();
   }
