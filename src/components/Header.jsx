@@ -5,7 +5,7 @@ import { useShelfTalk } from '../context/ShelfTalkContext';
 
 export const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { resetToDefaultData } = useShelfTalk();
+  const { resetToDefaultData, isBackendConnected } = useShelfTalk();
   const [showResetConfirm, setShowResetConfirm] = useState(false);
 
   const handleReset = () => {
@@ -64,8 +64,20 @@ export const Header = () => {
             ))}
           </nav>
 
-          {/* Quick Actions (Reset Demo Data & Mobile Toggle) */}
+          {/* Quick Actions (Backend Status, Reset Demo Data & Mobile Toggle) */}
           <div className="flex items-center gap-2">
+            <div
+              className={`hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold border ${
+                isBackendConnected
+                  ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                  : 'bg-amber-50 text-amber-800 border-amber-200'
+              }`}
+              title={isBackendConnected ? "Connected to Node.js/Express SQLite API" : "Running on Client LocalStorage"}
+            >
+              <span className={`w-2 h-2 rounded-full ${isBackendConnected ? 'bg-emerald-500 animate-pulse' : 'bg-amber-500'}`} />
+              <span>{isBackendConnected ? 'SQLite Active' : 'Offline / Standalone'}</span>
+            </div>
+
             <button
               type="button"
               onClick={handleReset}
